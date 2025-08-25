@@ -23,33 +23,32 @@ fn main() {
     }
 
     // Create base commands
-    let mut merge_command = Command::new("gh");
-    merge_command
+    let mut ready_command = Command::new("gh");
+    ready_command.arg("pr").arg("ready");
+
+    let mut automerge_command = Command::new("gh");
+    automerge_command
         .arg("pr")
         .arg("merge")
         .arg("--auto")
         .arg("--merge");
 
-    let mut ready_command = Command::new("gh");
-    ready_command.arg("pr").arg("ready");
-
     // Add PR identifier if provided
     if args.len() > 1 {
         let pr_identifier = &args[1];
-        merge_command.arg(pr_identifier);
+        automerge_command.arg(pr_identifier);
         ready_command.arg(pr_identifier);
     }
 
-    // Execute gh pr merge command
-    let merge_status = merge_command
+    // First mark the PR as ready
+    let ready_status = ready_command
         .stdout(std::process::Stdio::inherit())
         .stderr(std::process::Stdio::inherit())
         .status();
 
-    // Check if the command was successful
-    match merge_status {
+    match ready_status {
         Err(e) => {
-            eprintln!("Failed to execute merge command: {}", e);
+            eprintln!("Failed to execute ready command: {}", e);
             exit(1);
         }
         Ok(status) if !status.success() => {
@@ -59,14 +58,13 @@ fn main() {
         _ => {}
     }
 
-    // Execute gh pr ready command
-    let ready_status = ready_command
+    // Then enable auto-merge
+    let merge_status = automerge_command
         .stdout(std::process::Stdio::inherit())
         .stderr(std::process::Stdio::inherit())
         .status();
 
-    // Check if the command was successful
-    match ready_status {
+    match merge_status {
         Err(e) => {
             eprintln!("Failed to execute ready command: {}", e);
             exit(1);
