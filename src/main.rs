@@ -3,12 +3,11 @@ use std::process::{Command, exit};
 
 fn print_usage() {
     println!("\nUsage:");
-    println!("  gh arm [<number> | <url> | <branch>]");
+    println!("  gh arm [<number> | <url> | <branch>]...");
     println!("\nOptions:");
     println!("  <number>    PR number to merge");
     println!("  <url>       PR URL to merge");
     println!("  <branch>    Branch name to merge");
-    println!("              If no argument is provided, the current branch is used");
 }
 
 fn main() {
@@ -22,6 +21,19 @@ fn main() {
         }
     }
 
+    // If no additional arguments are provided, process the current branch
+    if args.len() == 1 {
+        process_pull_request(None);
+        return;
+    }
+
+    // Process each argument sequentially
+    for pull_request_identifier in args.iter().skip(1) {
+        process_pull_request(Some(pull_request_identifier));
+    }
+}
+
+fn process_pull_request(pull_request_identifier: Option<&str>) {
     // Create base commands
     let mut ready_command = Command::new("gh");
     ready_command.arg("pr").arg("ready");
@@ -34,10 +46,9 @@ fn main() {
         .arg("--merge");
 
     // Add PR identifier if provided
-    if args.len() > 1 {
-        let pr_identifier = &args[1];
-        automerge_command.arg(pr_identifier);
-        ready_command.arg(pr_identifier);
+    if let Some(id) = pull_request_identifier {
+        ready_command.arg(id);
+        automerge_command.arg(id);
     }
 
     // First mark the PR as ready
@@ -52,7 +63,6 @@ fn main() {
             exit(1);
         }
         Ok(status) if !status.success() => {
-            // Exit with the same code that the command returned
             exit(status.code().unwrap_or(1));
         }
         _ => {}
@@ -66,11 +76,10 @@ fn main() {
 
     match merge_status {
         Err(e) => {
-            eprintln!("Failed to execute ready command: {}", e);
+            eprintln!("Failed to execute merge command: {}", e);
             exit(1);
         }
         Ok(status) if !status.success() => {
-            // Exit with the same code that the command returned
             exit(status.code().unwrap_or(1));
         }
         _ => {}

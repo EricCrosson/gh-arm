@@ -15,7 +15,13 @@ gh extension install EricCrosson/gh-arm
 ## Use
 
 ```bash
-gh arm [<number> | <url> | <branch>]
+gh arm [<number> | <url> | <branch>]...
+```
+
+You can provide multiple pull requests to process them sequentially:
+
+```bash
+gh arm 123 456
 ```
 
 ## License
