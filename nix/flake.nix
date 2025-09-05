@@ -46,7 +46,6 @@
       inherit pre-commit-check;
     });
 
-    # Add dependencies that are only needed for development
     devShells = forEachSystem (system: let
       pkgs = nixpkgs.legacyPackages.${system};
     in {
