@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/EricCrosson/gh-arm/compare/v1.0.0...v1.1.0) (2025-09-05)
+
+
+### Features
+
+* support - as shorthand for previous branch ([52f4f8b](https://github.com/EricCrosson/gh-arm/commit/52f4f8b4dcc3ade7c20f56f221e4590ac15b40e2))
+
 # 1.0.0 (2025-08-25)
 
 
