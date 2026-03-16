@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/EricCrosson/gh-arm/compare/v1.1.0...v1.1.1) (2026-03-16)
+
+
+### Bug Fixes
+
+* correct cachix public key ([6d4c762](https://github.com/EricCrosson/gh-arm/commit/6d4c76249c00ac94d96ee014e6fb19e0f6762732))
+
 # [1.1.0](https://github.com/EricCrosson/gh-arm/compare/v1.0.0...v1.1.0) (2025-09-05)
 
 
