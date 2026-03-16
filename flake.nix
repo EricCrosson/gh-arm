@@ -1,6 +1,9 @@
 {
   description = "GitHub CLI extension to mark a PR as ready for review and enable auto-merge";
 
+  nixConfig.extra-substituters = ["https://ericcrosson-gh-arm.cachix.org"];
+  nixConfig.extra-trusted-public-keys = ["ericcrosson-gh-arm.cachix.org-1:F/7TLvBGov4xjEE3MSRgNNmYRxPDxW8BUeAyy0rbVu="];
+
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs";
   };
