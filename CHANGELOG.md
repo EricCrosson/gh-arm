@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/EricCrosson/gh-arm/compare/v1.1.1...v1.1.2) (2026-03-16)
+
+
+### Bug Fixes
+
+* **ci:** explicitly push binary to cachix after nix build ([e46df2b](https://github.com/EricCrosson/gh-arm/commit/e46df2b5421fe7f6de59e13dc39f61f1af6a2dbc))
+
 ## [1.1.1](https://github.com/EricCrosson/gh-arm/compare/v1.1.0...v1.1.1) (2026-03-16)
 
 
