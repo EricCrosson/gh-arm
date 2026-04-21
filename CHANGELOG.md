@@ -1,3 +1,17 @@
+# [2.0.0](https://github.com/EricCrosson/gh-arm/compare/v1.1.2...v2.0.0) (2026-04-21)
+
+
+* feat!: reimagine gh-arm with cwd-optional arming and live UI ([430ca13](https://github.com/EricCrosson/gh-arm/commit/430ca13c79b1a841efc0f41b7476b70609414162))
+
+
+### BREAKING CHANGES
+
+* URL syntax (gh arm <url>) is removed. Use bare
+numbers/branches for cwd-repo PRs or OWNER/REPO#NUMBER atoms for
+cross-repo PRs. Adds indicatif and ctrlc as direct dependencies.
+
+Co-Authored-By: Claude Sonnet 4.6 (1M context) <noreply@anthropic.com>
+
 ## [1.1.2](https://github.com/EricCrosson/gh-arm/compare/v1.1.1...v1.1.2) (2026-03-16)
 
 
