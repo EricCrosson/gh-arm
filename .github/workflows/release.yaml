@@ -36,7 +36,7 @@ jobs:
 
       - uses: DeterminateSystems/nix-installer-action@main
 
-      - uses: cachix/cachix-action@v15
+      - uses: cachix/cachix-action@v17
         with:
           name: ericcrosson-gh-arm
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
